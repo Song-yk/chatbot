@@ -18,6 +18,7 @@ import json
 
 from django.views.decorators.csrf import csrf_exempt
 
+from .models import UsageLog
 
 # Create your views here.
 
@@ -43,6 +44,8 @@ def chat(request):
     #post로 받은 question (index.html에서 name속성이 question인 input태그의 value값)을 가져옴
     query = request.POST.get('question')
     result = qa.invoke({"question":query})
+    
+    UsageLog.objects.create(question=query, answer=result["result"])
 
     return JsonResponse({"result": result["result"]})
 
