@@ -1,5 +1,6 @@
 from django.apps import AppConfig
 
 
-class ChatgptConfig(AppConfig):
-    name = 'chatgpt'
+class SelfchatgptConfig(AppConfig):
+    default_auto_field = "django.db.models.BigAutoField"
+    name = "chatgpt"

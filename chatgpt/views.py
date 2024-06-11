@@ -16,6 +16,7 @@ from langchain.schema import Document
 import pandas as pd
 import json
 
+from django.views.decorators.csrf import csrf_exempt
 
 
 # Create your views here.
@@ -24,29 +25,26 @@ import json
 embeddings = OpenAIEmbeddings(model = "text-embedding-ada-002")
 database = Chroma(persist_directory = "./database", embedding_function = embeddings)
 
+#chatgpt API 및 lang chain을 사용을 위한 선언
+chat = ChatOpenAI(model="gpt-3.5-turbo")
+k = 3
+retriever = database.as_retriever(search_kwargs={"k": k})
+memory = ConversationBufferMemory(memory_key="chat_history", input_key="question", output_key="result",
+                                  return_messages=True)
+qa = RetrievalQA.from_llm(llm=chat,  retriever=retriever,  memory=memory, input_key="question", output_key="result",
+                          return_source_documents=True)
+
 def index(request):
     return render(request, 'gpt/index.html')
 
+
+@csrf_exempt
 def chat(request):
     #post로 받은 question (index.html에서 name속성이 question인 input태그의 value값)을 가져옴
     query = request.POST.get('question')
+    result = qa.invoke({"question":query})
 
-    #chatgpt API 및 lang chain을 사용을 위한 선언
-    chat = ChatOpenAI(model="gpt-3.5-turbo")
-    k = 3
-    retriever = database.as_retriever(search_kwargs={"k": k})
-    qa = RetrievalQA.from_llm(llm=chat,  retriever=retriever,  return_source_documents=True)
-
-    result = qa(query)
-
-    # result.html에서 사용할 context
-    context = {
-        'question': query,
-        'result': result["result"]
-    }
-
-    # 응답을 보여주기 위한 html 선택 (위에서 처리한 context를 함께 전달)
-    return render(request, 'gpt/result.html', context) 
+    return JsonResponse({"result": result["result"]})
 
 
 

@@ -1,0 +1,109 @@
+/* 기본 설정 */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background-color: #f4f4f9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+#chat-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+
+#chat-box {
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 350px;
+    display: flex;
+    flex-direction: column;
+}
+
+#chat-header {
+    background-color: #007bff;
+    color: white;
+    padding: 10px;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    text-align: center;
+    font-size: 18px;
+}
+
+#chat-content {
+    padding: 10px;
+    flex-grow: 1;
+    overflow-y: auto;
+    height: 400px; /* 고정 높이를 설정하여 채팅 내용이 스크롤 가능하도록 함 */
+    display: flex;
+    flex-direction: column;
+}
+
+.chat-message {
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 10px;
+    max-width: 80%;
+    word-wrap: break-word; /* 텍스트가 길 경우 줄바꿈 처리 */
+    display: inline-block;
+}
+
+.user-message {
+    background-color: #007bff;
+    color: white;
+    align-self: flex-end;
+    text-align: right;
+    margin-left: auto;
+    min-width: 60px;  /* 최소 너비를 설정하여 짧은 메시지가 너무 작아지지 않도록 함 */
+}
+
+.bot-message {
+    background-color: #f1f0f0;
+    color: black;
+    align-self: flex-start;
+    text-align: left;
+    margin-right: auto;
+    min-width: 60px;  /* 최소 너비를 설정하여 짧은 메시지가 너무 작아지지 않도록 함 */
+}
+
+#chat-form {
+    display: flex;
+    border-top: 1px solid #ccc;
+    padding: 10px;
+}
+
+#question {
+    flex-grow: 1;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    resize: none;
+    font-size: 14px;
+    margin-right: 10px;
+    height: 50px;
+}
+
+#text-button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+#text-button:hover {
+    background-color: #0056b3;
+}
