@@ -24,31 +24,4 @@ function ShiftEnter(event){
         document.getElementById('text-button').click();
     }
 }
-function addMessage(message, className) {
-    // 새로운 메시지 요소 생성
-    const messageElement = document.createElement('div');
-    messageElement.classList.add('chat-message', className);
-    
-    // 줄바꿈 문자를 <br> 태그로 변환하여 메시지 추가
-    const messageLines = message.split('\n');
-    messageLines.forEach(line => {
-        const lineElement = document.createElement('div');
-        lineElement.textContent = line;
-        messageElement.appendChild(lineElement);
-    });
-
-    // chat-content 요소에 메시지 추가
-    chatContent.appendChild(messageElement);
-
-    // chat-content의 스크롤을 최신 메시지로 이동
-    chatContent.scrollTop = chatContent.scrollHeight;
-}
-
-// Enter 키 누를 때 줄바꿈을 방지하는 함수
-document.getElementById("question").addEventListener("keydown", function(event) {
-  if (event.keyCode === 13 && !event.shiftKey) {
-    event.preventDefault();
-    document.getElementById("text-button").click();
-  }
-});
 </script>
