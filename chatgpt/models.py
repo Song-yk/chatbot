@@ -11,7 +11,6 @@ class UsageLog(models.Model):
 
 class Document(models.Model):
     content = models.TextField()
-    # embedding = models.BinaryField()  # 실제 사용 시 적절한 데이터 타입을 선택
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
