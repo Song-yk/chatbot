@@ -10,7 +10,7 @@
         </div>
         <form id="chat-form" action="chat" method="post" enctype="application/x-www-form-urlencoded">
             {% csrf_token %}
-            <textarea id="question" name="question" placeholder="Type a message..."></textarea>
+            <textarea id="question" name="question" placeholder="질문을 입력하세요..." onkeydown="if(event.keyCode==13) {event.preventDefault(); document.getElementById('text-button').click();}"></textarea>
             <button id="text-button" type="submit">Send</button>
         </form>
     </div>
