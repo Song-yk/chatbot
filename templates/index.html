@@ -8,19 +8,14 @@
         <link rel="stylesheet" href="{% static 'base.css' %}" />    
     </head>
     <body>
-        <div class="d-flex justify-content-center align-items-center p-3">   
+        <div class="d-flex justify-content-center align-items-center p-5">   
             <div class="w-50 p-3 text-center">
-                <div class="mb-5 w-100">
+                <div class="mb-5 w-100" style="margin-left:7px">
                     <img src="\static\image\chatbot.png" alt="My Image" width="350" height="350">
                 </div>
                 <div>
-                        {% comment %} <ol>
-                            <li><a href="/chatgpt/">단발성 질문, 답변 페이지</a></li>
-                            <li><a href="/selfchatgpt/">답변 페이지 self</a></li>
-                        </ol> {% endcomment %}
-
-                        
-                        <button type="button" class="btn btn-secondary btn-lg w-50 fw-bold fs-4" onclick="location.href='/chatgpt/'" >Start</button>
+                    <button type="button" class="btn btn-secondary btn-lg w-50 fw-bold fs-4 mb-3" onclick="location.href='/chatgpt/'" >Start</button>
+                    <button type="button" class="btn btn-dark btn-lg w-50 fw-bold fs-4" onclick="location.href='/admin/'" >관리자 화면</button>
                 </div>
             </div>
         </div>

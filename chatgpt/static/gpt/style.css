@@ -50,6 +50,30 @@ body {
     flex-direction: column;
 }
 
+.chat-content {
+    max-height: 300px;
+    overflow-y: auto;
+    border: 1px solid #ccc;
+    padding: 10px;
+}
+.chat-message-container {
+    display: flex;
+    align-items: center;
+    margin: 10px 0;
+}
+
+.user-message-container {
+    justify-content: flex-end;
+}
+.bot-message-container {
+    justify-content: flex-start;
+}
+.bot-image {
+    width: 30px;
+    height: 30px;
+    margin-right: 10px;
+}
+
 .chat-message {
     margin-bottom: 10px;
     padding: 10px;
