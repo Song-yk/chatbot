@@ -67,9 +67,20 @@
         </script>
         <script>
             $(document).ready(function(){
-                // 클리어 버튼 클릭 시 이전 대화 내용 지우기
+                // 클리어 버튼 클릭 시 이전 대화 내용, 세션 지우기
                 $("#clear-button").click(function(){
                     $("#chat-content").empty();
+                    
+                    $.ajax({
+                        type: 'GET',
+                        url: '/chatgpt/clear-session/',
+                        success: function(response) {
+                            console.log(response.message);
+                        },
+                        error: function(xhr, status, error) {
+                            console.error('Error clearing session:', error);
+                        }
+                    });
                 });
             });
             </script>

@@ -56,7 +56,16 @@ def chat(request):
     # 대화 기록을 업데이트합니다.
     request.session['chat_history'] = chat_history
     
+    # print("##############Chat##############")
+    # print(request.session)
     UsageLog.objects.create(question=query, answer=result["result"])
 
     # 클라이언트에 대답을 반환합니다.
     return JsonResponse({"result": result['result']})
+
+
+def clear_session(request):
+    request.session.flush()
+    # print("##############clear##############")
+    # print(request.session)
+    return JsonResponse({'status': 'success', 'message': 'Session cleared successfully.'})
