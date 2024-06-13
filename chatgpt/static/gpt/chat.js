@@ -38,31 +38,13 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     function addMessage(message, className) {
-        // 메시지 컨테이너 요소 생성
-        const messageContainer = document.createElement('div');
-        messageContainer.classList.add('chat-message-container');
-
-        // bot-message일 경우 프로필 이미지를 추가
-        if (className === 'bot-message') {
-            const svgElement = document.createElement('img');
-            svgElement.src = 'static/gpt/image/ai.svg'; // 봇 이미지의 경로로 변경
-            svgElement.alt = 'Bot';
-            svgElement.classList.add('bot-image'); // 스타일링을 위한 클래스 추가
-
-            // 메시지 컨테이너에 이미지 추가
-            messageContainer.appendChild(svgElement);
-        }
-
         // 새로운 메시지 요소 생성
         const messageElement = document.createElement('div');
         messageElement.classList.add('chat-message', className);
         messageElement.textContent = message;
 
-        // 메시지 컨테이너에 메시지 요소 추가
-        messageContainer.appendChild(messageElement);
-
-        // chat-content 요소에 메시지 컨테이너 추가
-        chatContent.appendChild(messageContainer);
+        // chat-content 요소에 메시지 추가
+        chatContent.appendChild(messageElement);
 
         // chat-content의 스크롤을 최신 메시지로 이동
         chatContent.scrollTop = chatContent.scrollHeight;
@@ -82,6 +64,4 @@ document.addEventListener('DOMContentLoaded', function() {
     window.scrollToBottom = function() {
         chatContent.scrollTop = chatContent.scrollHeight;
     };
-
-    
 });
