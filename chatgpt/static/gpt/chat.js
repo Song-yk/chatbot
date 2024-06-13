@@ -64,4 +64,16 @@ document.addEventListener('DOMContentLoaded', function() {
     window.scrollToBottom = function() {
         chatContent.scrollTop = chatContent.scrollHeight;
     };
+
+    // text-button 요소를 가져옵니다.
+    const textButton = document.getElementById('text-button');
+
+    // text-button을 클릭했을 때 실행할 함수를 정의합니다.
+    textButton.addEventListener('click', function() {
+        // question textarea 요소를 가져옵니다.
+        const questionTextarea = document.getElementById('question');
+
+        // question textarea의 높이를 초기값(여기서는 50px)으로 설정합니다.
+        questionTextarea.style.height = '50px';
+    });
 });
