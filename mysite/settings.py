@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'chatgpt',
     'selfchatgpt',
+    'accounts',
 ]
 
 MIDDLEWARE = [
@@ -79,6 +80,10 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
+    },
+    'chroma': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'database' / 'chroma.sqlite3',
     }
 }
 
@@ -128,4 +133,5 @@ STATICFILES_DIRS = [ BASE_DIR / 'static', ]
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 
-
+SESSION_ENGINE = 'django.contrib.sessions.backends.db'  # 데이터베이스를 세션 백엔드로 사용
+SESSION_SAVE_EVERY_REQUEST = True  # 매 요청마다 세션 저장
