@@ -2,6 +2,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const chatForm = document.getElementById('chat-form');
     const chatContent = document.getElementById('chat-content');
     const questionInput = document.getElementById('question');
+    const scrollToBottomButton = document.getElementById('scroll-to-bottom'); // 추가
 
     chatForm.addEventListener('submit', function(event) {
         event.preventDefault();
@@ -66,5 +67,21 @@ document.addEventListener('DOMContentLoaded', function() {
         // chat-content의 스크롤을 최신 메시지로 이동
         chatContent.scrollTop = chatContent.scrollHeight;
     }
+
+    // 추가
+    // chat-content 스크롤 이벤트 감지 및 버튼 표시/숨기기
+    chatContent.addEventListener('scroll', () => {
+        if (chatContent.scrollTop < chatContent.scrollHeight - chatContent.clientHeight - 100) {
+            scrollToBottomButton.classList.add('show');
+        } else {
+            scrollToBottomButton.classList.remove('show');
+        }
+    });
+    
+    // 맨 아래로 스크롤하는 함수
+    window.scrollToBottom = function() {
+        chatContent.scrollTop = chatContent.scrollHeight;
+    };
+
     
 });
