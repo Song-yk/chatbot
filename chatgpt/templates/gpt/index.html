@@ -11,6 +11,10 @@
     <header>
         <nav>
             <label><b>ChatGPT</b></label>
+            <div id="user-tols">
+                <a>Login ID: {{user}} </a>
+                <a href="{% url 'logout' %}">Logout</a>
+            </div>
         </nav>
     </header>
     <main>
