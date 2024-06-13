@@ -12,8 +12,8 @@
         <nav>
             <label><b>ChatGPT</b></label>
             <div id="user-tols">
-                <a>Login ID: {{user}} </a>
-                <a href="{% url 'logout' %}">Logout</a>
+                <a id="login-button">Login ID: {{user}} </a>
+                <a id="logout" href="{% url 'logout' %}">Logout</a>
             </div>
         </nav>
     </header>
@@ -26,7 +26,7 @@
             <form id="chat-form" action="chat" method="post" enctype="application/x-www-form-urlencoded">
                 {% csrf_token %}
                 <button id="clear-button" type="button"></button>
-                <textarea id="question" name="question" placeholder="message..."></textarea>
+                <textarea id="question" name="question" oninput='this.style.height = ""; this.style.height = this.scrollHeight + "px"' placeholder="message..."></textarea>
                 <button id="text-button" type="submit"></button>
             </form>
         </div>
@@ -68,26 +68,25 @@
             document.getElementById("text-button").click();
         }
         });
-        </script>
-        <script>
-            $(document).ready(function(){
-                // 클리어 버튼 클릭 시 이전 대화 내용, 세션 지우기
-                $("#clear-button").click(function(){
-                    $("#chat-content").empty();
-                    
-                    $.ajax({
-                        type: 'GET',
-                        url: '/chatgpt/clear-session/',
-                        success: function(response) {
-                            console.log(response.message);
-                        },
-                        error: function(xhr, status, error) {
-                            console.error('Error clearing session:', error);
-                        }
-                    });
+
+        $(document).ready(function(){
+            // 클리어 버튼 클릭 시 이전 대화 내용, 세션 지우기
+            $("#clear-button").click(function(){
+                $("#chat-content").empty();
+                
+                $.ajax({
+                    type: 'GET',
+                    url: '/chatgpt/clear-session/',
+                    success: function(response) {
+                        console.log(response.message);
+                    },
+                    error: function(xhr, status, error) {
+                        console.error('Error clearing session:', error);
+                    }
                 });
             });
-            </script>
+        });
+        </script>
     </main>
     <footer>
         <p>Allrights reserved. ©KT AIVLE</p>
