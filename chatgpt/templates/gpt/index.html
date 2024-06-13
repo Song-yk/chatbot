@@ -1,27 +1,69 @@
-{% load static %}
-{% block extrahead %}
-<link rel="stylesheet" href="{% static 'gpt/style.css' %}">
-{% endblock %}
-<div id="chat-container">
-    <div id="chat-box">
-        <div id="chat-header">Chat Interface</div>
-        <div id="chat-content" style="white-space: pre-line;"> <!--줄바꿈--> 
-            <!-- 메시지가 여기에 추가됩니다 -->
+<!doctype html>
+<html>
+<head>
+    {% load static %}
+    {% block extrahead %}
+    <link rel="stylesheet" href="{% static 'gpt/style.css' %}">
+    {% endblock %}
+</head>
+<body>
+    <header>
+        <nav>
+            <label><b>ChatGPT</b></label>
+        </nav>
+    </header>
+    <main>
+        <div id="chat-container">
+            <div id="chat-content">
+                <!-- 메시지가 여기에 추가됩니다 -->
+            </div>
+            <button id="scroll-to-bottom" class="scroll-to-bottom" onclick="scrollToBottom()"></button>
+            <form id="chat-form" action="chat" method="post" enctype="application/x-www-form-urlencoded">
+                {% csrf_token %}
+                <textarea id="question" name="question" placeholder="message..."></textarea>
+                <button id="text-button" type="submit"></button>
+            </form>
         </div>
-        <form id="chat-form" action="chat" method="post" enctype="application/x-www-form-urlencoded">
-            {% csrf_token %}
-            <textarea id="question" name="question" placeholder="질문을 입력하세요..." onkeydown="ShiftEnter(event)"></textarea>
-            <button id="text-button" type="submit" >Send</button>
-        </form>
-    </div>
-</div>
-<script src="{% static 'gpt/chat.js' %}"></script>
-<script>
-function ShiftEnter(event){
-    if(event.keyCode == 13 && !event.shiftKey)
-    {
-        event.preventDefault(); 
-        document.getElementById('text-button').click();
-    }
-}
-</script>
+        <script src="{% static 'gpt/chat.js' %}"></script>
+        <script>
+        function ShiftEnter(event){
+            if(event.keyCode == 13 && !event.shiftKey)
+            {
+                event.preventDefault(); 
+                document.getElementById('text-button').click();
+            }
+        }
+        function addMessage(message, className) {
+            // 새로운 메시지 요소 생성
+            const messageElement = document.createElement('div');
+            messageElement.classList.add('chat-message', className);
+            
+            // 줄바꿈 문자를 <br> 태그로 변환하여 메시지 추가
+            const messageLines = message.split('\n');
+            messageLines.forEach(line => {
+                const lineElement = document.createElement('div');
+                lineElement.textContent = line;
+                messageElement.appendChild(lineElement);
+            });
+
+            // chat-content 요소에 메시지 추가
+            chatContent.appendChild(messageElement);
+
+            // chat-content의 스크롤을 최신 메시지로 이동
+            chatContent.scrollTop = chatContent.scrollHeight;
+        }
+
+        // Enter 키 누를 때 줄바꿈을 방지하는 함수
+        document.getElementById("question").addEventListener("keydown", function(event) {
+        if (event.keyCode === 13 && !event.shiftKey) {
+            event.preventDefault();
+            document.getElementById("text-button").click();
+        }
+        });
+        </script>
+    </main>
+    <footer>
+        <p>Allrights reserved. ©KT AIVLE</p>
+    </footer>
+</body>
+</html>

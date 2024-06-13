@@ -1,133 +1,166 @@
-/* 기본 설정 */
-* {
-    box-sizing: border-box;
+html,body {
     margin: 0;
-    padding: 0;
-    font-family: Arial, sans-serif;
-}
-
-body {
-    background-color: #f4f4f9;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-}
-
-#chat-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
     height: 100%;
 }
 
-#chat-box {
-    background-color: #ffffff;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    width: 350px;
-    display: flex;
-    flex-direction: column;
+header {
+    height: 67px;
+    background-color: white;
+    color: black;
+    border-bottom: 1px solid #343a40;
 }
 
-#chat-header {
-    background-color: #007bff;
-    color: white;
-    padding: 10px;
-    border-top-left-radius: 8px;
-    border-top-right-radius: 8px;
-    text-align: center;
-    font-size: 18px;
+header>nav {
+    max-width: 1000px;
+    padding: 12px 20px;
+    margin: 0 auto;
+}
+
+header>nav>label {
+    font-size: 32px;
+    margin-top: 10px;
+}
+
+main {
+    height: calc(100% - 120px);
+    bottom: 0;
+    padding: 0 15% 0 30%;
+    margin: 0 auto;
+    display: block;
+    position: relative;
+}
+
+main::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 25%;
+    height: 109%;
+    border-right: 1px solid #343a40;
+}
+
+#chat-container {
+    height: 100%;
+    width: 100%;
+    bottom: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
 }
 
 #chat-content {
-    padding: 10px;
-    flex-grow: 1;
-    overflow-y: auto;
-    height: 400px; /* 고정 높이를 설정하여 채팅 내용이 스크롤 가능하도록 함 */
+    width: 70%;
+    margin-left: 10%;
     display: flex;
     flex-direction: column;
-}
-
-.chat-content {
-    max-height: 300px;
+    position: relative;
     overflow-y: auto;
-    border: 1px solid #ccc;
-    padding: 10px;
-}
-.chat-message-container {
-    display: flex;
-    align-items: center;
-    margin: 10px 0;
 }
 
-.user-message-container {
-    justify-content: flex-end;
-}
-.bot-message-container {
-    justify-content: flex-start;
-}
-.bot-image {
-    width: 30px;
-    height: 30px;
-    margin-right: 10px;
+::-webkit-scrollbar {
+    display: none;
 }
 
 .chat-message {
-    margin-bottom: 10px;
-    padding: 10px;
-    border-radius: 10px;
     max-width: 80%;
-    word-wrap: break-word; /* 텍스트가 길 경우 줄바꿈 처리 */
-    display: inline-block;
+    margin: 10px 0;
+    padding: 10px;
+    border-radius: 20px;
 }
 
 .user-message {
-    background-color: #007bff;
-    color: white;
+    font-size: 14px;
+    padding: 12px 12px;
+    background-color: #e9ecef;
+    color: #212529;
     align-self: flex-end;
     text-align: right;
-    margin-left: auto;
-    min-width: 60px;  /* 최소 너비를 설정하여 짧은 메시지가 너무 작아지지 않도록 함 */
 }
 
 .bot-message {
-    background-color: #f1f0f0;
-    color: black;
+    font-size: 14px;
+    padding: 12px 12px;
+    background-color: #868e96;
+    color: #f8f9fa;
     align-self: flex-start;
     text-align: left;
-    margin-right: auto;
-    min-width: 60px;  /* 최소 너비를 설정하여 짧은 메시지가 너무 작아지지 않도록 함 */
+    margin-left: 45px;
+}
+
+.bot-message::before {
+    content: '';
+    background-image: url('/static/gpt/image/ai.png');
+    width: 30px;
+    height: 30px;
+    background-size: cover;
+    position: absolute;
+    left: 1px;
+    top: 60;
+    transform: translateY(-50%);
 }
 
 #chat-form {
+    width: 77%;
+    margin-left: 10%;
     display: flex;
-    border-top: 1px solid #ccc;
-    padding: 10px;
 }
 
-#question {
-    flex-grow: 1;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    resize: none;
-    font-size: 14px;
-    margin-right: 10px;
-    height: 50px;
+textarea#question {
+    flex: 1;
+    font-size: 13px;
+    border-radius: 20px;
+    height: 40px;
+    line-height: 3;
+    text-indent: 10px;
 }
 
-#text-button {
-    background-color: #007bff;
-    color: white;
+button#text-button {
+    margin-left: 10px;
+    width: 45px;
+    height: 45px;
+    background-color: #343a40;
     border: none;
-    border-radius: 4px;
-    padding: 10px 20px;
+    border-radius: 40%;
     cursor: pointer;
-    font-size: 14px;
+    background-image: url('/static/gpt/image/uparrow.png');
+    background-size: 70%;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
-#text-button:hover {
-    background-color: #0056b3;
+.scroll-to-bottom {
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    left: 55%;
+    bottom: 10%;
+    display: none;
+    background-color: #495057;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    background-image: url('/static/gpt/image/downarrow.png');
+    background-size: 70%;
+    background-position: center;
+    background-repeat: no-repeat;
+    transform: translateX(-50%);
+}
+
+.scroll-to-bottom.show {
+    display: block;
+}
+
+footer {
+    max-width: 720px;
+    margin: 0 auto;
+    height: 20px;
+    padding: 20px;
+    text-align: center;
+}
+
+footer>p {
+    font-size: 13px;
+    margin: 0;
 }
