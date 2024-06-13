@@ -25,7 +25,7 @@
             <button id="scroll-to-bottom" class="scroll-to-bottom" onclick="scrollToBottom()"></button>
             <form id="chat-form" action="chat" method="post" enctype="application/x-www-form-urlencoded">
                 {% csrf_token %}
-                <button id="clear-button" type="button" class="btn btn-secondary btn-sm fw-bold fs-5" style="margin-right: 10px;">Clear</button>
+                <button id="clear-button" type="button"></button>
                 <textarea id="question" name="question" placeholder="message..."></textarea>
                 <button id="text-button" type="submit"></button>
             </form>

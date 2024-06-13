@@ -63,6 +63,19 @@ main::before {
     border-right: 1px solid #343a40;
 }
 
+button#clear-button {
+    width: 50px;
+    height: 50px;
+    background-color: white;
+    border: none;
+    border-radius: 40%;
+    cursor: pointer;
+    background-image: url('/static/gpt/image/trash.png');
+    background-size: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
 #chat-container {
     height: 100%;
     width: 100%;
@@ -74,7 +87,7 @@ main::before {
 
 #chat-content {
     width: 70%;
-    margin-left: 10%;
+    margin-left: 12%;
     display: flex;
     flex-direction: column;
     position: relative;
@@ -124,7 +137,7 @@ main::before {
 }
 
 #chat-form {
-    width: 77%;
+    width: 82%;
     margin-left: 10%;
     display: flex;
 }
@@ -133,13 +146,15 @@ textarea#question {
     flex: 1;
     font-size: 13px;
     border-radius: 20px;
-    height: 40px;
+    height: 50px;
+    max-height: 80px;
     line-height: 3;
     text-indent: 10px;
 }
 
 button#text-button {
     margin-left: 10px;
+    margin-top: 3px;
     width: 45px;
     height: 45px;
     background-color: #343a40;
