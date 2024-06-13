@@ -55,6 +55,8 @@ def chat(request):
 
     # 대화 기록을 업데이트합니다.
     request.session['chat_history'] = chat_history
+    
+    UsageLog.objects.create(question=query, answer=result["result"])
 
     # 클라이언트에 대답을 반환합니다.
     return JsonResponse({"result": result['result']})
